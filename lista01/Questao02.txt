@@ -1,0 +1,5 @@
+2) Explique as duas fases de compilação de programas Java.
+
+A primeira parte é a transformação da sintaxe de Java em bytecodes, arquivos
+.class. Em seguida, a Java Virtual Machine (JVM) é interpreta linha a linha
+do arquivo .class.

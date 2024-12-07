@@ -1,0 +1,14 @@
+1) Preencha as lacunas em cada uma das seguintes afirmações
+a) O comando __java__ do JDK executa um aplicativo Java.
+b) O comando __javac__ do JDK compila um programa Java.
+c) Um arquivo de código-fonte aberto Java deve terminar com a extensão __.java__.
+d) Quando um programa Java é compilado, o arquivo produzido pelo compilador termina
+com a extensão __.class__.
+e) O arquivo produzido pelo compilador Java contém __bytecodes__, que são executados pela
+Java Virtual Machine.
+f) A linguagem de programação __C++__ foi desenvolvida por Bjarne Stroustrup no início
+dos anos 1980 na Bell Laboratories.
+g) As linguagens mais convenientes para que o programador escreva programas rápida e
+facilmente são as __linguagens interpretadas__.
+h) __Assembly__ é um tipo de linguagem de computador que utiliza abreviações em inglês para
+instruções de linguagem de máquina.
