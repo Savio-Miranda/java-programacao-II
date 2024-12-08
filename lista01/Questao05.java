@@ -4,7 +4,7 @@ package lista01;
 //multiplicação dos números pares entre 1 e 30.
 
 public class Questao05{
-    public static void somarNumerosUmATrinta(){
+    public static void somarNumerosImparesUmATrinta(){
         int contador = 0;
         for (int i = 1; i < 31; i++) {
             if(i%2 != 0){
@@ -12,16 +12,16 @@ public class Questao05{
             }
 
         }
-        System.out.println(contador);
+        System.out.println("Números ímpares somados: " + contador);
     }
 
-    public static void multiplicacaoNumerosUmATrinta(){
+    public static void multiplicarNumerosParesUmATrinta(){
         double contador = 1;
         for (double i = 1; i < 31; i++) {
             if(i%2 == 0){
                 contador *= i;
             }
         }
-        System.out.println(contador);
+        System.out.println("Números pares multiplicados: " +contador);
     }
 }

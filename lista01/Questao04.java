@@ -4,7 +4,7 @@ package lista01;
 // o valor do número até 0.
 
 public class Questao04 {
-    public void imprimeAteN(int n){
+    public static void imprimeAteN(int n){
         for (int i = n; i > 0; i--) {
             System.out.println(i);
         }
