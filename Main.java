@@ -13,7 +13,7 @@ import validadorCPF.CPF;
 
 public class Main {
     public static void main(String[] args) throws Exception{
-        CPF cpf = new CPF("00000000001");
+        CPF cpf = new CPF("13081262046");
         System.out.println(cpf.getCPF());
         
         // Cat cat = new Cat();

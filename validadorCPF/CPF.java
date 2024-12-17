@@ -38,10 +38,15 @@ public class CPF {
         int sum = 0;
         int digitVerifier;
         for (int i = 2; i > 0; i--){
+            int count = numbers.size() - i  + 1;
             for (int j = 0; j < numbers.size() - i; j++) {
-                sum += (j + 1) * numbers.get(j);
+                sum += numbers.get(j) * (count - j);
             }
-            digitVerifier = (sum % 11 == 10) ? 0 : sum % 11;
+            if(sum%11 >= 10){
+                digitVerifier = 0;
+            } else{
+                digitVerifier = 11 - (sum % 11);
+            }
             boolean isValid = numbers.get(numbers.size() - i) == digitVerifier;
             if (!isValid) {
                 return false;
