@@ -3,7 +3,9 @@ package calculadora;
 import java.util.ArrayList;
 
 public interface CalculatorInterface {
-    public void setNumbers(double a, double b);
+    public void setForSingularOperation(double a);
+    public void setForDoubleOperation(double a, double b);
+    public void setForTripleOperation(double a, double b, double c);
     public boolean memoryIsEmpty();
     public ArrayList<Double> getMemory();
     public void sum();
@@ -15,5 +17,7 @@ public interface CalculatorInterface {
     public void exponential();
     public void factorial();
     public void floor();
+    public void root();
+    public void ceiling();
     
 }

@@ -11,33 +11,91 @@ public class Menu {
         this.calculator = calculator;
     }
 
-    private void checkNumbers(){
-        double n1 = 0;
-        double n2 = 0;
-        
-        if (!calculator.memoryIsEmpty()) {
+    private void singleOperation(){
+        double number;
+
+        if (calculator.memoryIsEmpty()) {
+            System.out.print("n1: ");
+            number = scan.nextDouble();
+        } else {
             System.out.print("Carregar da memória? (S/s)");
             String decision = scan.next();
             if(decision.matches("[Ss]")){
                 showMemory();
-                System.out.print("Insira o index de [0, n]: ");
+                System.out.print("Insira o index [0, n]: ");
                 int index = scan.nextInt();
-                scan.nextLine(); // Limpa o buffer após a leitura do index
+                number = validateMemoryIndex(calculator.getMemory(), index);
+            } else {
+                System.out.print("n1: ");
+                number = scan.nextDouble();
+            }
+        }
+
+        calculator.setForSingularOperation(number);
+    }
+
+    private void doubleOperation(){
+        double n1, n2;
+
+        if (calculator.memoryIsEmpty()) {
+            System.out.print("n1: ");
+            n1 = scan.nextDouble();
+            System.out.print("n2: ");
+            n2 = scan.nextDouble();
+        } else {
+            System.out.print("Carregar da memória? (S/s)");
+            String decision = scan.next();
+            if(decision.matches("[Ss]")){
+                showMemory();
+                System.out.print("Insira o index [0, n]: ");
+                int index = scan.nextInt();
                 n1 = validateMemoryIndex(calculator.getMemory(), index);
                 System.out.print("n2: ");
-                n2 = scan.nextFloat();
+                n2 = scan.nextDouble();
+            } else {
+                System.out.print("n1: ");
+                n1 = scan.nextDouble();
+                System.out.print("n2: ");
+                n2 = scan.nextDouble();
             }
-        } else {
-            System.out.print("n1: ");
-            n1 = scan.nextFloat();
-            scan.nextLine(); // Limpa o buffer após a leitura de n1
-
-            System.out.print("n2: ");
-            n2 = scan.nextFloat();
-            scan.nextLine(); // Limpa o buffer após a leitura de n2
-
         }
-        calculator.setNumbers(n1, n2);
+
+        calculator.setForDoubleOperation(n1, n2);
+    }
+
+    private void tripleOperation(){
+        double n1, n2, n3;
+
+        if (calculator.memoryIsEmpty()) {
+            System.out.print("n1: ");
+            n1 = scan.nextDouble();
+            System.out.print("n2: ");
+            n2 = scan.nextDouble();
+            System.out.print("n2: ");
+            n3 = scan.nextDouble();
+        } else {
+            System.out.print("Carregar da memória? (S/s)");
+            String decision = scan.next();
+            if(decision.matches("[Ss]")){
+                showMemory();
+                System.out.print("Insira o index [0, n]: ");
+                int index = scan.nextInt();
+                n1 = validateMemoryIndex(calculator.getMemory(), index);
+                System.out.print("n2: ");
+                n2 = scan.nextDouble();
+                System.out.print("n3: ");
+                n3 = scan.nextDouble();
+            } else {
+                System.out.print("n1: ");
+                n1 = scan.nextDouble();
+                System.out.print("n2: ");
+                n2 = scan.nextDouble();
+                System.out.print("n2: ");
+                n3 = scan.nextDouble();
+            }
+        }
+
+        calculator.setForTripleOperation(n1, n2, n3);
     }
 
     private ArrayList<String> showMemory(){
@@ -97,80 +155,81 @@ public class Menu {
                     break;
                 
                 case "+":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.sum();
                     break;
                 
                 case "-":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.difference();
                     break;
                 
                 case "*":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.product();
                     break;
                 
                 case "/":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.quotient();
                     break;
                 
                 case "//":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.intQuotient();
                     break;
                 
                 case "%":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.rest();
                     break;
         
                 case "^":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.exponential();
                     break;
                 
                 case "!":
-                    // AINDA FALTA IMPLEMENTAÇÃO
-                    checkNumbers();
+                    singleOperation();
                     calculator.factorial();
                     break;
                 
                 // case "A":
-                //     calculadora.arrangement();
+                //     calculator.arrangement();
                 //     break;
                 
                 // case "P":
-                //     calculadora.permutation();
+                //     calculator.permutation();
                 //     break;
                 
                 case "f":
-                    checkNumbers();
+                    doubleOperation();
                     calculator.floor();
                     break;
                 
-                // case "c":
-                //     calculadora.ceiling();
-                //     break;
+                case "c":
+                    singleOperation();
+                    calculator.ceiling();
+                    break;
                 
-                // case "r":
-                //     calculadora.root();
-                //     break;
+                case "r":
+                    tripleOperation();
+                    calculator.root();
+                    break;
                 
                 // case "Prime":
-                //     calculadora.checkIfPrime();
+                //     calculator.checkIfPrime();
                 //     break;
                 
                 // case "SQP":
-                //     calculadora.checkIfPerfectSquare();
+                //     calculator.checkIfPerfectSquare();
                 //     break;
 
                 default:
                     showMenu();
                     break;
             }
-            //showMenu(calculadora);
+            //showMenu(calculator);
         }
     }
 
