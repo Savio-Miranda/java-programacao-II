@@ -43,6 +43,7 @@ public class Elevador {
     public void desce(){
         if(andarAtual <= 0){
             System.out.println("Já estamos no térreo...");
+            return;
         }
         System.out.println("Descendo...");
         andarAtual -= 1;
@@ -88,7 +89,7 @@ public class Elevador {
     }
     
     public int getAndarAtual(){
-        return ultimoAndar;
+        return andarAtual;
     }
 
     public void setCapacidadeAtual(){

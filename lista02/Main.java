@@ -35,14 +35,26 @@ public class Main {
             universidade.setDepartamentos(departamento);
         }
 
+        ArrayList<Departamento> departamentos = universidade.getDepartamento();
+        System.out.println("Departamentos atuais na universidade " + universidade.getNome() + ":");
+        for (Departamento departamento : departamentos) {
+            System.out.println(departamento.getNome());
+            System.out.println("Pessoas no departamento " + departamento.getNome() + ":");
+            
+            for (Pessoa pessoa : departamento.getPessoas()) {
+                System.out.println("Nome: " + pessoa.getNome() + ", email: " + pessoa.getEmail() + ", telefone: " + pessoa.getTelefone());
+            }
+        }
+
+        System.out.println("_".repeat(30)); // separador no console
 
         Elevador elevador = new Elevador();
+        elevador.setAndarMaisAlto(); // usuário dita qual o maior andar possível (último andar > 1)
+        elevador.setCapacidadeMaxima(); // usuário dita qual a capacidade máxima do elevador
+        System.out.println("Último andar: " + elevador.getAndarMaisAlto()); // verifica quantos andares possui
         System.out.println("Andar atual: " + elevador.getAndarAtual());
         elevador.desce(); // gerar erro
         elevador.sobe(); // Primeiro andar
-        System.out.println("Andar atual: " + elevador.getAndarAtual());
-        elevador.setAndarMaisAlto(); // usuário dita qual o maior andar possível (último andar > 1)
-        elevador.getAndarMaisAlto(); // verifica quantos andares possui
         System.out.println("Andar atual: " + elevador.getAndarAtual());
         elevador.entra();
         System.out.println("Capacidade atual: " + elevador.getCapacidadeAtual());

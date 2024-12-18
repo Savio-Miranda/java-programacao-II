@@ -16,6 +16,7 @@ public class Universidade {
     private ArrayList<Departamento> departamentos = new ArrayList<Departamento>(10);
 
     public void setNome(){
+        System.out.println("Forneça um nome para a universidade:");
         this.nome = scan.nextLine();
     }
 

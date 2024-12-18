@@ -25,6 +25,7 @@ public class ControleRemoto {
         }
         volume += 1;
         televisao.setVolumeAtual(volume);
+        System.out.println("Aumentando o volume!");
     }
 
     public void diminuiVolume(){
@@ -35,6 +36,7 @@ public class ControleRemoto {
         }
         volume -= 1;
         televisao.setVolumeAtual(volume);
+        System.out.println("Diminuindo o volume!");
     }
 
     public void mudaDeCanalPositivamente(){
@@ -63,6 +65,7 @@ public class ControleRemoto {
             System.out.println("Este canal não está no catálogo de sua TV!");
             return;
         }
+        System.out.println("Forneça o canal que quer assistir (0, 15)");
         televisao.setCanalAtual(verificarCanal);
     }
 }

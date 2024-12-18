@@ -9,6 +9,7 @@ public class Departamento {
     private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>(2);
 
     public void setNome(){
+        System.out.println("Forneça um nome para o departamento:");
         nome = scan.nextLine();
     }
 
@@ -22,7 +23,7 @@ public class Departamento {
         }
     }
 
-    public ArrayList<Pessoa> getDepartamento(){
+    public ArrayList<Pessoa> getPessoas(){
         return pessoas;
     }
 }
