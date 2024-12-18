@@ -1,6 +1,6 @@
 Disciplina: Programação II
 
-Professor: Reginal Santos
+Professor: Reginaldo Santos
 
 Aluno: Sávio Miranda
 
