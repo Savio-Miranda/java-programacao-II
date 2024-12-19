@@ -53,7 +53,7 @@ public class Menu {
         System.out.println("| Exponencial (^)         |");
         System.out.println("| Fatorial(!)             |");
         System.out.println("| (A)rranjo               |");
-        System.out.println("| (P)ermutação            |");
+        System.out.println("| (Per)mutação            |");
         System.out.println("| Piso (F)                |");
         System.out.println("| Teto (C)                |");
         System.out.println("| Raiz (R)                |");
@@ -210,6 +210,7 @@ public class Menu {
                     if (memoryIndex == impossibleNumber){
                         System.out.print("Fatorial de: ");
                         toFactorial = scan.nextInt();
+                        System.out.println("MEU FATORIAL: " + toFactorial);
                         calculator.factorial(toFactorial);
                     } else {
                         System.out.print("Índice: ");
@@ -227,14 +228,14 @@ public class Menu {
                     calculator.arrangement(toFactorial, index);
                     break;
                 
-                case "P":
+                case "Per":
                     System.out.print("Digite o fatorial no numerador: ");
                     toFactorial = scan.nextInt();
                     System.out.println("Digite a quantidade de elementos repetidos");
                     System.out.print("Ex. BANANA = 6!/(2!*3!)\nElementos repetidos: ");
                     index = scan.nextInt();
                     int[] repetitions = new int[index];
-                    for (int i = 0; i <= repetitions.length; i++) {
+                    for (int i = 0; i < repetitions.length; i++) {
                         System.out.println("Agora digite o valor da repetição: ");
                         repetitions[i] = scan.nextInt();
                     }
@@ -269,7 +270,7 @@ public class Menu {
                     }
                     break;
                 
-                case "Prime":
+                case "P":
                     System.out.print("Digite um número para verificar sua primalidade: ");
                     index = scan.nextInt();
                     if(calculator.checkIfPrime(index)){
@@ -280,19 +281,12 @@ public class Menu {
                     break;
                 
                 case "SQP":
-                    System.out.print("Digite um número para verificar sua primalidade: ");
+                    System.out.print("Digite um número para verificar se é um quadrado perfeito: ");
                     index = scan.nextInt();
-                    if(calculator.checkIfPrime(index)){
-                        System.out.println("O número " + index + " é primo");
+                    if(calculator.checkIfPerfectSquare(index)){
+                        System.out.println("O número " + index + " é quadrado perfeito");
                     } else {
-                        System.out.println("O número " + index + " NÃO é primo");
-                    }
-                    System.out.print("Digite um número para verificar sua primalidade: ");
-                    index = scan.nextInt();
-                    if(calculator.checkIfPrime(index)){
-                        System.out.println("O número " + index + " é um quadrado perfeito.");
-                    } else {
-                        System.out.println("O número " + index + " NÃO é um quadrado perfeito.");
+                        System.out.println("O número " + index + " NÃO é quadrado perfeito");
                     }
                     break;
 
@@ -300,7 +294,6 @@ public class Menu {
                     showMenu();
                     break;
             }
-            //showMenu(calculator);
         }
     }
 

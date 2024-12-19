@@ -76,14 +76,18 @@ public class Calculator implements CalculatorInterface {
         memory.add(result);
     }
 
-    @Override
-    public double factorial(int toFactor){
+    public double internFactorial(int toFactor){
         result = 1;
         for(int i = toFactor; i >= 2; i--){
             result *= i;
         }
-        memory.add(result);
         return result;
+    }
+
+    @Override
+    public void factorial(int toFactor){
+        result = internFactorial(toFactor);
+        memory.add(result);
     }
 
     @Override
@@ -106,17 +110,18 @@ public class Calculator implements CalculatorInterface {
 
     @Override
     public void arrangement(int n, int k){
-        double result = factorial(n)/factorial(n-k);
+        result = internFactorial(n)/internFactorial(n-k);
         memory.add(result);
     }
 
     @Override
     public void permutation(int n, int[] repetitions){
         double denominator = 1;
-        for (int i = 1; i < repetitions.length; i++) {
-            denominator *= factorial(repetitions[i]);
+        for (int i = 0; i < repetitions.length; i++) {
+            System.out.println("denominador? " + repetitions[i]);
+            denominator *= internFactorial(repetitions[i]);
         }
-        double result = factorial(n)/denominator;
+        double result = internFactorial(n)/denominator;
         memory.add(result);
     }
 
@@ -134,10 +139,11 @@ public class Calculator implements CalculatorInterface {
 
     @Override
     public boolean checkIfPerfectSquare(int n){
-        result = Math.pow(n, 1/2);
-        if (result == Math.floor(result))
-            return true;
-        return false;
+        if (n < 0) {
+            return false;
+        }
+        result = Math.sqrt(n);
+        return result == Math.floor(result);
     }
 
 

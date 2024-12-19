@@ -13,7 +13,7 @@ public interface CalculatorInterface {
     public void rest(double numerator, double divisor);
     public void exponential(double base, double exp);
     public void root(int radicand, int index);
-    public double factorial(int toFactor);
+    public void factorial(int toFactor);
     public void arrangement(int n, int k);
     public void permutation(int n, int[] repetitions);
     public void floor(double toFloor);
