@@ -4,29 +4,38 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
+    // Chama a interface da calculadora
     private final Calculator calculator;
+    // Instancia o scanner para acessar o console (input de usuário)
     private Scanner scan = new Scanner(System.in);
-    int impossibleNumber = -1000000;
+    // Um limite definido que jamais será alcançado em um vetor
+    int impossibleNumber = -1;
     
+    // Construtor do Menu recebe qualquer calculadora que atenda à interface
     public Menu(Calculator calculator) {
         this.calculator = calculator;
     }
 
+    // Mostra a memória da calculadora
     private ArrayList<String> showMemory(){
         ArrayList<String> memoryToShow = new ArrayList<String>();
         for(double element : calculator.getMemory()){
-            String stringFloatElement = String.valueOf(element);
-            if(stringFloatElement.endsWith(".0")){
+            String stringDoubleElement = String.valueOf(element);
+            // verificação se o sufixo for qualquer coisa .0, armazena-se um inteiro
+            if(stringDoubleElement.endsWith(".0")){
                 String stringIntElement = String.valueOf(Math.round(element));
                 memoryToShow.add(stringIntElement);
+            // do contrário, armazena-se um double mesmo
             } else {
-                memoryToShow.add(stringFloatElement);
+                memoryToShow.add(stringDoubleElement);
             }
         }
         return memoryToShow;
     }
 
+    // função que pergunta ao usuário se este deseja utilizar um valor da memória
     private int loadFromMemory(){
+        // se a memória estiver vazia, retorna o número impossível
         if (calculator.memoryIsEmpty()){
             return impossibleNumber;
         }
@@ -34,13 +43,15 @@ public class Menu {
         String load = scan.next();
         if (load.matches("[Ss]")) {
             showMemory();
-            System.out.print("Insira o index da lista de 0 a n: ");
+            // pergunta ao usuário qual o valor na memória deseja usar
+            System.out.print("Insira o index da lista de 1 a n: ");
             int index = scan.nextInt();
             return index;
         }
         return impossibleNumber;
     }
 
+    // exibe o menu de opções
     private void showMenu(){
         System.out.println("*--------- MENU ----------*");
         System.out.println("| Finalizar programa (0)  |");
@@ -64,9 +75,12 @@ public class Menu {
         System.out.print("*-> ");
     }
 
+    // switch de operações da lista
     public void operation() {
         boolean end = false;
         
+        // calculadora roda indefinidamente até o término do programa (recebe 0)
+        // Algumas funções podem acessar a memória, então é necessário um if-else para verificar
         while (!end) {
             showMenu();
             String userInput = scan.next();
@@ -77,6 +91,7 @@ public class Menu {
                     end = true;
                     break;
                 
+                // ADIÇÂO
                 case "+":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber) {
@@ -88,11 +103,12 @@ public class Menu {
                     } else {
                         System.out.print("Segundo termo: ");
                         b = scan.nextDouble();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.sum(a, b);
                     }
                     break;
                 
+                // SUBTRAÇÃO
                 case "-":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber) {
@@ -104,11 +120,12 @@ public class Menu {
                     } else {
                         System.out.print("Segundo termo: ");
                         b = scan.nextDouble();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.difference(a, b);
                     }
                     break;
                 
+                // MULTIPLICAÇÃO
                 case "*":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber){
@@ -120,11 +137,12 @@ public class Menu {
                     } else {
                         System.out.print("Segundo fator: ");
                         b = scan.nextDouble();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.product(a, b);
                     }
                     break;
                 
+                // DIVISÃO
                 case "/":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber) {
@@ -136,11 +154,12 @@ public class Menu {
                     } else {
                         System.out.print("Divisor: ");
                         b = scan.nextDouble();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.quotient(a, b);
                     }
                     break;
                 
+                // DIVISÃO INTEIRA
                 case "//":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber){
@@ -152,11 +171,12 @@ public class Menu {
                     } else {
                         System.out.print("Divisor: ");
                         b = scan.nextDouble();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.intQuotient(a, b);
                     }
                     break;
                 
+                // RESTO DA DIVISÃO
                 case "%":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber) {
@@ -168,11 +188,12 @@ public class Menu {
                     } else {
                         System.out.print("Divisor: ");
                         b = scan.nextDouble();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.rest(a, b);
                     }
                     break;
         
+                // EXPONENCIAÇÃO
                 case "^":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber) {
@@ -184,11 +205,12 @@ public class Menu {
                     } else {
                         System.out.print("Expoente: ");
                         b = scan.nextDouble();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.exponential(a, b);
                     }
                     break;
                 
+                // RADICIAÇÃO
                 case "R":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber){
@@ -200,11 +222,12 @@ public class Menu {
                     } else {
                         System.out.print("Índice: ");
                         index = scan.nextInt();
-                        radicand = calculator.getMemory().get(memoryIndex).intValue();
+                        radicand = calculator.getMemory().get(memoryIndex  - 1).intValue();
                         calculator.root(radicand, index);
                     }
                     break;
                 
+                // FATORIAL
                 case "!":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber){
@@ -215,11 +238,12 @@ public class Menu {
                     } else {
                         System.out.print("Índice: ");
                         index = scan.nextInt();
-                        toFactorial = calculator.getMemory().get(memoryIndex).intValue();
+                        toFactorial = calculator.getMemory().get(memoryIndex  - 1).intValue();
                         calculator.factorial(toFactorial);
                     }
                     break;
                 
+                // ARRANJO
                 case "A":
                     System.out.print("Digite o fatorial no numerador: ");
                     toFactorial = scan.nextInt();
@@ -228,6 +252,7 @@ public class Menu {
                     calculator.arrangement(toFactorial, index);
                     break;
                 
+                // PERMUTAÇÃO
                 case "Per":
                     System.out.print("Digite o fatorial no numerador: ");
                     toFactorial = scan.nextInt();
@@ -242,7 +267,8 @@ public class Menu {
                     calculator.permutation(toFactorial, repetitions);
                     break;
 
-                case "f":
+                // PISO
+                case "F":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber) {
                         System.out.print("Piso: ");
@@ -251,12 +277,13 @@ public class Menu {
                     } else {
                         System.out.print("Piso: ");
                         index = scan.nextInt();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.floor(a);
                     }
                     break;
                 
-                case "c":
+                // TETO
+                case "C":
                     memoryIndex = loadFromMemory();
                     if (memoryIndex == impossibleNumber){
                         System.out.print("Teto: ");
@@ -265,31 +292,34 @@ public class Menu {
                     } else {
                         System.out.print("Teto: ");
                         index = scan.nextInt();
-                        a = calculator.getMemory().get(memoryIndex);
+                        a = calculator.getMemory().get(memoryIndex  - 1);
                         calculator.floor(a);
                     }
                     break;
                 
+                // VERIFICA SE É PRIMO
                 case "P":
                     System.out.print("Digite um número para verificar sua primalidade: ");
                     index = scan.nextInt();
                     if(calculator.checkIfPrime(index)){
                         System.out.println("O número " + index + " é primo");
                     } else {
-                        System.out.println("O número " + index + " não é primo");
+                        System.out.println("O número " + index + " NÃO é primo");
                     }
                     break;
                 
+                // VERIFICA SE É QUADRADO PERFEITO
                 case "SQP":
                     System.out.print("Digite um número para verificar se é um quadrado perfeito: ");
                     index = scan.nextInt();
                     if(calculator.checkIfPerfectSquare(index)){
-                        System.out.println("O número " + index + " é quadrado perfeito");
+                        System.out.println("O número " + index + " é quadrado perfeito de "+ Math.pow(index, 1.0/2));
                     } else {
                         System.out.println("O número " + index + " NÃO é quadrado perfeito");
                     }
                     break;
 
+                // qualquer outro case que não as operações propostas, chama o MENU
                 default:
                     showMenu();
                     break;

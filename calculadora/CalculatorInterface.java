@@ -2,6 +2,7 @@ package calculadora;
 
 import java.util.ArrayList;
 
+// Interface da calculadora que a obriga a implementar essas funções
 public interface CalculatorInterface {
     public boolean memoryIsEmpty();
     public ArrayList<Double> getMemory();
